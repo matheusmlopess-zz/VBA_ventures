@@ -1,0 +1,48 @@
+Sub procuraCaixasDeTexto()
+    Dim forma As Shape
+    Dim aux As String
+    Dim achei As Integer
+    
+   'Exclui bordas do documento
+     'ActiveDocument.Range.Font.Color = wdColorWhite
+    
+   'Text color Automatic to White
+     'ActiveDocument.Sections(1).Borders.Enable = False
+
+    For Each forma In ActiveDocument.Shapes
+    
+    forma.Select
+    On Error GoTo Handler2
+
+        If Selection.ShapeRange.TextFrame.HasText Then
+        On Error GoTo Handler1
+            Selection.ShapeRange.TextFrame.TextRange.Select
+           ' nameOk = Selection.ShapeRange(1).Name
+           ' MsgBox nameOk
+        End If
+        
+
+      '  If forma.Type = msoTextBox Then
+         '   forma.Select
+          '  MsgBox Selection.ShapeRange(1).Name
+          '  Selection.ShapeRange.TextFrame.TextRange.Select
+          ' aux = Selection.Text
+          'aux = Left(aux, 20)
+          
+            'achei = MsgBox("Caixa de texto contendo:" & vbCrLf _
+              & aux & vbCrLf & "Parar aqui?", vbYesNo, "Caixa de texto encontrada!")
+           ' If achei = vbYes Then Exit For
+      '  End If
+    Next
+    
+    
+Handler1:
+   MsgBox "Tudo Pronto codigo (1)"
+   
+Handler2:
+   MsgBox "Erro inner loop codigo(2) !"
+   
+End Sub
+
+
+
