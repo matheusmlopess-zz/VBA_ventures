@@ -44,5 +44,11 @@ Handler2:
    
 End Sub
 
-
+Function SetImages()
+  Dim aPic As InlineShape
+  For Each aPic In ActiveDocument.InlineShapes
+    aPic.PictureFormat.Brightness = 1
+    aPic.PictureFormat.Contrast = 0
+  Next aPic
+End Function
 
