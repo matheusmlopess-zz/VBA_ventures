@@ -1,4 +1,4 @@
-Attribute VB_Name = "Módulo1"
+Attribute VB_Name = "MÃ³dulo1"
 Sub procuraCaixasDeTexto()
     Dim forma As Shape
     Dim forma1 As Shape
@@ -57,7 +57,7 @@ Sub procuraCaixasDeTexto()
      'End If
     
 ' #####################################################
-' só parte colorida
+' sÃ³ parte colorida
 ' #####################################################
  
     pathOf = CreateObject("WScript.Shell").specialfolders("Desktop")
@@ -146,7 +146,7 @@ Sub procuraCaixasDeTexto()
  
      
 ' #####################################################
-' só parte preto e branca
+' sÃ³ parte preto e branca
 ' #####################################################
  
     ActiveDocument.SaveAs FileName:=nomeDaPasta _
@@ -162,10 +162,12 @@ ErroHandler:
  
  
 Handler1:
-'MsgBox "Tudo Pronto codigo (1) !"
+    Err.Clear
+    Resume Next
    
-'Handler2:
-   'MsgBox "Erro inner loop codigo (2) !"
+Handler2:
+    MsgBox "Erro inner loop codigo (2) !"
+    Resume Next
    
 End Sub
 
