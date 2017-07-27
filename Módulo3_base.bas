@@ -1,4 +1,4 @@
-Attribute VB_Name = "Módulo3"
+Attribute VB_Name = "MÃ³dulo3"
 Sub procuraCaixasDeTexto()
     Dim forma As Shape
     Dim forma1 As Shape
@@ -9,18 +9,6 @@ Sub procuraCaixasDeTexto()
     Dim eh_WordArt_Inline As InlineShape
     Dim sTexto As String
     Dim hdr As HeaderFooter
-     
-
-    'ActiveDocument.Range.Font.Color = wdColorAuto
-    'For Each forma In ActiveDocument.Shapes
-    'forma.Select
-
-       'If Selection.ShapeRange.TextFrame.HasText Then
-          'On Error GoTo Handler1
-            'Selection.Font.Color = wdColorAuto
-       'End If
-    'Next
-
 
 ' #####################################################
 ' Handler de imagens
@@ -79,7 +67,7 @@ Sub procuraCaixasDeTexto()
     
     
 ' #####################################################
-' só parte P&B
+' sÃ³ parte P&B
 ' #####################################################
  
     pathOf = CreateObject("WScript.Shell").specialfolders("Desktop")
@@ -98,12 +86,6 @@ Sub procuraCaixasDeTexto()
     FileFormat:=wdFormatDocument
 
 
-
-
-
- '########################################################################
-
-
 ErroHandler:
     Err.Clear
     Resume Next
@@ -119,15 +101,8 @@ Handler2:
    
 End Sub
 
-
-
 Function CreateFolder(ByVal sPath As String) As Boolean
-'by Patrick Honorez - www.idevlop.com
-'create full sPath at once, if required
-'returns False if folder does not exist and could NOT be created, True otherwise
-'sample usage: If CreateFolder("C:\toto\test\test") Then debug.print "OK"
-'updated 20130422 to handle UNC paths correctly ("\\MyServer\MyShare\MyFolder")
-
+'function by Patrick Honorez - www.idevlop.com
     Dim fs As Object
     Dim FolderArray
     Dim Folder As String, i As Integer, sShare As String
@@ -153,13 +128,3 @@ Function CreateFolder(ByVal sPath As String) As Boolean
     CreateFolder = True
 hell:
 End Function
-
-
-
-
-
- 
-
-
-
- 
