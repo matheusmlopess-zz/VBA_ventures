@@ -1,6 +1,5 @@
-Attribute VB_Name = "Módulo3"
+Attribute VB_Name = "MÃ³dulo3"
 Sub find_wordart()
-
 
 Dim eh_WordArt As Shape
 Dim eh_WordArt_InlineShpNrm As InlineShape
@@ -15,10 +14,8 @@ Dim sText As String
                     eh_WordArt.Fill.Visible = False
                     eh_WordArt.Fill.Transparency = 1
                     eh_WordArt.Line.Visible = False
- 
                 End If
-        
-        Next
+        Next 
         
         For Each eh_WordArt_InlineShpNrm In ActiveDocument.InlineShapes
             sText = "no Word Art"
@@ -29,9 +26,7 @@ Dim sText As String
                      eh_WordArt_InlineShpNrm.Fill.Visible = False
                      eh_WordArt_InlineShpNrm.Fill.Transparency = 1
                      eh_WordArt_InlineShpNrm.Line.Visible = False
- 
-                End If
-        
+                 End If
         Next
 
 ErroHandler:
