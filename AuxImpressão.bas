@@ -175,11 +175,6 @@ End Sub
 
 Function CreateFolder(ByVal sPath As String) As Boolean
 'by Patrick Honorez - www.idevlop.com
-'create full sPath at once, if required
-'returns False if folder does not exist and could NOT be created, True otherwise
-'sample usage: If CreateFolder("C:\toto\test\test") Then debug.print "OK"
-'updated 20130422 to handle UNC paths correctly ("\\MyServer\MyShare\MyFolder")
-
     Dim fs As Object
     Dim FolderArray
     Dim Folder As String, i As Integer, sShare As String
