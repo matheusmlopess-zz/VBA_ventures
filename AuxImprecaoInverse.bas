@@ -18,7 +18,9 @@ Sub procuraCaixasDeTexto()
     For Each forma2 In ActiveDocument.Shapes
        forma2.Select
            If forma2.Type = msoPicture Then
-               forma2.PictureFormat.Brightness = 1
+               'forma2.Select
+               'MsgBox Selection.ShapeRange.Name
+               forma2.PictureFormat.Brightness = 0.5
                If Selection.ShapeRange.Name = "Imagem 3" Then
                    forma2.Select
                    forma2.PictureFormat.Brightness = 0.5
@@ -29,6 +31,8 @@ Sub procuraCaixasDeTexto()
 ' #####################################################
 ' Handler de wordArt
 ' #####################################################
+
+   
      On Error GoTo ErroHandler
        For Each eh_WordArt In ActiveDocument.Shapes
        On Error GoTo ErroHandler
@@ -43,6 +47,7 @@ Sub procuraCaixasDeTexto()
                     eh_WordArt.Line.Transparency = 1
           
                 End If
+        
     Next
         
     For Each eh_WordArt_Inline In ActiveDocument.InlineShapes
@@ -64,7 +69,8 @@ Sub procuraCaixasDeTexto()
 ' #####################################################
 ' só parte P&B
 ' #####################################################
-     pathOf = CreateObject("WScript.Shell").specialfolders("Desktop")
+ 
+    pathOf = CreateObject("WScript.Shell").specialfolders("Desktop")
     
         If Application.Documents.Count >= 1 Then
             nomeDoc = ActiveDocument.Name
@@ -79,8 +85,22 @@ Sub procuraCaixasDeTexto()
     & strNewFolderName & "\" & "Parte_Preto&Branco", _
     FileFormat:=wdFormatDocument
 
+
  '########################################################################
-MsgBox "wait"
+    
+' #####################################################
+' Handler de cabeçalho
+' #####################################################
+     
+     For Each hdr In ActiveDocument.Sections(1).Headers
+        hdr.Range.Text = vbNullString
+     Next hdr
+     
+
+' #####################################################
+' Reverter wordArt
+' #####################################################
+
      On Error GoTo ErroHandler
        For Each eh_WordArt In ActiveDocument.Shapes
        On Error GoTo ErroHandler
@@ -93,6 +113,7 @@ MsgBox "wait"
                     eh_WordArt.Line.Transparency = 0.5
           
                 End If
+        
     Next
         
     For Each eh_WordArt_Inline In ActiveDocument.InlineShapes
@@ -141,11 +162,14 @@ MsgBox "wait"
 ' só parte Colorida
 ' #####################################################
  
-    ActiveDocument.SaveAs FileName:=nomeDaPasta & strNewFolderName & "\" & "Parte_Colorida", FileFormat:=wdFormatDocument
+    ActiveDocument.SaveAs FileName:=nomeDaPasta & strNewFolderName & "\" & "Parte_PretoBranco", FileFormat:=wdFormatDocument
+
+
 
 ErroHandler:
     Err.Clear
     Resume Next
+ 
  
 Handler1:
     Err.Clear
@@ -156,6 +180,8 @@ Handler2:
     Resume Next
    
 End Sub
+
+
 
 Function CreateFolder(ByVal sPath As String) As Boolean
 'by Patrick Honorez - www.idevlop.com
