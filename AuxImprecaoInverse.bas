@@ -20,7 +20,7 @@ Sub procuraCaixasDeTexto()
            If forma2.Type = msoPicture Then
                'forma2.Select
                'MsgBox Selection.ShapeRange.Name
-               forma2.PictureFormat.Brightness = 0.5
+               forma2.PictureFormat.Brightness = 1
                If Selection.ShapeRange.Name = "Imagem 3" Then
                    forma2.Select
                    forma2.PictureFormat.Brightness = 0.5
@@ -87,7 +87,7 @@ Sub procuraCaixasDeTexto()
 
 
  '########################################################################
-    
+    MsgBox "okay"
 ' #####################################################
 ' Handler de cabeçalho
 ' #####################################################
@@ -162,7 +162,7 @@ Sub procuraCaixasDeTexto()
 ' só parte Colorida
 ' #####################################################
  
-    ActiveDocument.SaveAs FileName:=nomeDaPasta & strNewFolderName & "\" & "Parte_PretoBranco", FileFormat:=wdFormatDocument
+    ActiveDocument.SaveAs FileName:=nomeDaPasta & strNewFolderName & "\" & "Parte_Colorida", FileFormat:=wdFormatDocument
 
 
 
