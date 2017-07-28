@@ -9,11 +9,9 @@ Sub procuraCaixasDeTexto()
     Dim eh_WordArt_Inline As InlineShape
     Dim sTexto As String
     Dim hdr As HeaderFooter
-
 ' #####################################################
 ' Handler de imagens
 ' #####################################################
- 
     Dim forma2 As Shape
     
     For Each forma2 In ActiveDocument.Shapes
@@ -33,9 +31,7 @@ Sub procuraCaixasDeTexto()
 ' #####################################################
 ' Handler de wordArt
 ' #####################################################
-
-   
-     On Error GoTo ErroHandler
+       On Error GoTo ErroHandler
        For Each eh_WordArt In ActiveDocument.Shapes
        On Error GoTo ErroHandler
             sTexto = "no Word Art"
@@ -62,14 +58,10 @@ Sub procuraCaixasDeTexto()
                    eh_WordArt_Inline.Line.Visible = False
  
                  End If
-        
     Next
-    
-    
 ' #####################################################
 ' só parte P&B
 ' #####################################################
- 
     pathOf = CreateObject("WScript.Shell").specialfolders("Desktop")
     
         If Application.Documents.Count >= 1 Then
@@ -89,8 +81,7 @@ Sub procuraCaixasDeTexto()
 ErroHandler:
     Err.Clear
     Resume Next
- 
- 
+
 Handler1:
     Err.Clear
     Resume Next
@@ -110,21 +101,21 @@ Function CreateFolder(ByVal sPath As String) As Boolean
     If Right(sPath, 1) = "\" Then sPath = Left(sPath, Len(sPath) - 1)
     Set fs = CreateObject("Scripting.FileSystemObject")
     'UNC path ? change 3 "\" into 3 "@"
-    If sPath Like "\\*\*" Then
-        sPath = Replace(sPath, "\", "@", 1, 3)
-    End If
+        If sPath Like "\\*\*" Then
+            sPath = Replace(sPath, "\", "@", 1, 3)
+        End If
     'now split
     FolderArray = Split(sPath, "\")
     'then set back the @ into \ in item 0 of array
     FolderArray(0) = Replace(FolderArray(0), "@", "\", 1, 3)
     On Error GoTo hell
     'start from root to end, creating what needs to be
-    For i = 0 To UBound(FolderArray) Step 1
-        Folder = Folder & FolderArray(i) & "\"
-        If Not fs.FolderExists(Folder) Then
-            fs.CreateFolder (Folder)
-        End If
-    Next
+        For i = 0 To UBound(FolderArray) Step 1
+            Folder = Folder & FolderArray(i) & "\"
+            If Not fs.FolderExists(Folder) Then
+                fs.CreateFolder (Folder)
+            End If
+        Next
     CreateFolder = True
 hell:
 End Function
