@@ -1,4 +1,3 @@
-Attribute VB_Name = "Módulo3"
 Sub procuraCaixasDeTexto()
     Dim forma As Shape
     Dim forma1 As Shape
