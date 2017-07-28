@@ -3,19 +3,14 @@ Sub procuraCaixasDeTexto()
     Dim aux As String
     Dim achei As Integer
     Dim objInLineShape As InlineShape
-      
 
-    
    'Exclui bordas do documento
      ActiveDocument.Range.Font.Color = wdColorWhite
     
    'Text color Automatic to White
-     ActiveDocument.Sections(1).Borders.Enable = False
+    ActiveDocument.Sections(1).Borders.Enable = False
 
-
-           
     For Each forma In ActiveDocument.Shapes
-    
     forma.Select
     'On Error GoTo Handler2
 
@@ -25,8 +20,6 @@ Sub procuraCaixasDeTexto()
            ' nameOk = Selection.ShapeRange(1).Name
            ' MsgBox nameOk
         End If
-        
-
 
         If forma.Type = msoTextBox Then
             forma.Select
@@ -50,10 +43,9 @@ Sub procuraCaixasDeTexto()
       '  Selection.ShapeRange.TextFrame.TextRange.Select
       '  Next objInLineShape
 
-        End If
-        
+            End If 
     Next
-    
+
 Handler1:
   ' MsgBox "Tudo Pronto codigo (1) !"
    
