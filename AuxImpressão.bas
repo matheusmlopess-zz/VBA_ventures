@@ -41,8 +41,6 @@ Sub procuraCaixasDeTexto()
        '  Selection.ShapeRange.Fill.BackColor = wdColorWhite
         ' Selection.ShapeRange.Fill.ForeColor = wdColorWhite
         ' Selection.ShapeRange.TextFrame.TextRange.Select
-         
-      
         ' aux = Selection.Text    ' aux = Left(aux, 20) para 20 caracteres
         ' achei = MsgBox("[" + Selection.ShapeRange(1).Name + "]:" _
              & vbCrLf _
@@ -51,10 +49,9 @@ Sub procuraCaixasDeTexto()
              & vbCrLf _
              & "Parar aqui?", _
                vbYesNo, "Caixa de texto encontrada")
-             
+           
          'If achei = vbYes Then Exit For
-    
-     'End If
+    'End If
     
 ' #####################################################
 ' só parte colorida
@@ -65,7 +62,7 @@ Sub procuraCaixasDeTexto()
         If Application.Documents.Count >= 1 Then
             nomeDoc = ActiveDocument.Name
         Else
-            MsgBox "No documents are open"
+            MsgBox "Sem documentos abertos"
         End If
     
     nomeDaPasta = pathOf & "\" & nomeDoc & "_"
@@ -75,7 +72,7 @@ Sub procuraCaixasDeTexto()
     & strNewFolderName & "\" & "Parte_Colorid", _
     FileFormat:=wdFormatDocument
 
- '#####################################################
+'#####################################################
 
  MsgBox "Revertenduuu ..."
  
@@ -94,8 +91,7 @@ Sub procuraCaixasDeTexto()
 ' #####################################################
 ' Handler de wordArt
 ' #####################################################
-
-   
+ 
      On Error GoTo ErroHandler
        For Each eh_WordArt In ActiveDocument.Shapes
             sTexto = "no Word Art"
@@ -107,7 +103,6 @@ Sub procuraCaixasDeTexto()
                     eh_WordArt.Line.Visible = False
  
                 End If
-        
     Next
         
     For Each eh_WordArt_Inline In ActiveDocument.InlineShapes
@@ -119,28 +114,20 @@ Sub procuraCaixasDeTexto()
                    eh_WordArt_Inline.Fill.Visible = False
                    eh_WordArt_Inline.Fill.Transparency = 1
                    eh_WordArt_Inline.Line.Visible = False
- 
                  End If
-        
     Next
 ' #####################################################
 ' Handler de imagens
 ' #####################################################
  
  Dim forma2 As Shape
- 
  For Each forma2 In ActiveDocument.Shapes
- 
       forma2.Select
     ' MsgBox Selection.ShapeRange.Name
-     
         If forma2.Type = msoPicture Then
             forma2.Select
             forma2.PictureFormat.Brightness = 1
         End If
-        
-    ' MsgBox Selection.ShapeRange(1).Name
-        
  Next
  
  
@@ -149,12 +136,7 @@ Sub procuraCaixasDeTexto()
 ' só parte preto e branca
 ' #####################################################
  
-    ActiveDocument.SaveAs FileName:=nomeDaPasta _
-    & strNewFolderName & "\" & "Parte_PretoBranco", _
-    FileFormat:=wdFormatDocument
-
- '########################################################################
-
+    ActiveDocument.SaveAs FileName:=nomeDaPasta & strNewFolderName & "\" & "Parte_PretoBranco", FileFormat:=wdFormatDocument
 
 ErroHandler:
     Err.Clear
@@ -180,11 +162,11 @@ Function CreateFolder(ByVal sPath As String) As Boolean
     Dim Folder As String, i As Integer, sShare As String
 
     If Right(sPath, 1) = "\" Then sPath = Left(sPath, Len(sPath) - 1)
-    Set fs = CreateObject("Scripting.FileSystemObject")
-    'UNC path ? change 3 "\" into 3 "@"
+        Set fs = CreateObject("Scripting.FileSystemObject")
     If sPath Like "\\*\*" Then
         sPath = Replace(sPath, "\", "@", 1, 3)
     End If
+
     'now split
     FolderArray = Split(sPath, "\")
     'then set back the @ into \ in item 0 of array
@@ -198,8 +180,6 @@ Function CreateFolder(ByVal sPath As String) As Boolean
         End If
     Next
     CreateFolder = True
+
 hell:
 End Function
-
-
-
