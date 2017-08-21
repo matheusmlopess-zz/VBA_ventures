@@ -31,12 +31,10 @@ Sub procuraCaixasDeTexto()
     Next
     
   EndUndoSaver
-
 ' #####################################################
 ' só parte P&B
 ' #####################################################
- 
-    pathOf = CreateObject("WScript.Shell").specialfolders("Desktop")
+     pathOf = CreateObject("WScript.Shell").specialfolders("Desktop")
     
         If Application.Documents.Count >= 1 Then
             nomeDoc = ActiveDocument.Name
@@ -50,8 +48,6 @@ Sub procuraCaixasDeTexto()
     ActiveDocument.SaveAs FileName:=nomeDaPasta _
     & strNewFolderName & "\" & "Parte_Preto&Branco", _
     FileFormat:=wdFormatDocument
-
-
  '########################################################################
     MsgBox "okay"
 ' #####################################################
@@ -61,14 +57,12 @@ Sub procuraCaixasDeTexto()
      For Each hdr In ActiveDocument.Sections(1).Headers
         hdr.Range.Text = vbNullString
      Next hdr
-     
 ' #####################################################
 ' Handler de imagens
 ' #####################################################
 
     Dim forma3 As Shape
-    
-    For Each forma3 In ActiveDocument.Shapes
+       For Each forma3 In ActiveDocument.Shapes
        forma3.Select
            If forma3.Type = msoPicture Then
                forma3.Select
@@ -93,15 +87,12 @@ Sub procuraCaixasDeTexto()
             
          End If
     Next
-    
 
 ' #####################################################
 ' só parte Colorida
 ' #####################################################
  
     ActiveDocument.SaveAs FileName:=nomeDaPasta & strNewFolderName & "\" & "Parte_Colorida", FileFormat:=wdFormatDocument
-
-
 
 ErroHandler:
     Err.Clear
@@ -116,8 +107,6 @@ Handler2:
     Resume Next
    
 End Sub
-
-
 
 Function CreateFolder(ByVal sPath As String) As Boolean
 'by Patrick Honorez - www.idevlop.com
