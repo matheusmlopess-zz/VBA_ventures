@@ -146,28 +146,3 @@ Function CreateFolder(ByVal sPath As String) As Boolean
     CreateFolder = True
 hell:
 End Function
-
-
-
-
-Sub EditUndo() ' Catches Ctrl-Z
-    If ActiveDocument.Undo = False Then Exit Sub
-    While BookMarkExists("_InMacro_")
-        If ActiveDocument.Undo = False Then Exit Sub
-    Wend
-End Sub
-
-
-Sub EditRedo() ' Catches Ctrl-Y
-    If ActiveDocument.Redo = False Then Exit Sub
-    While BookMarkExists("_InMacro_")
-        If ActiveDocument.Redo = False Then Exit Sub
-    Wend
-End Sub
-
-
-Private Function BookMarkExists(Name As String) As Boolean
-    On Error Resume Next
-    BookMarkExists = Len(ActiveDocument.Bookmarks(Name).Name) > -1
-    On Error GoTo 0
-End Function
