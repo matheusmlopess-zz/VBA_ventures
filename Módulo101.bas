@@ -1,4 +1,4 @@
-Attribute VB_Name = "Módulo1"
+Attribute VB_Name = "MÃ³dulo1"
 Sub procuraCaixasDeTexto()
     Dim forma As Shape
     Dim forma1 As Shape
@@ -33,7 +33,7 @@ Sub procuraCaixasDeTexto()
   EndUndoSaver
 
 ' #####################################################
-' só parte P&B
+' sÃ³ parte P&B
 ' #####################################################
  
     pathOf = CreateObject("WScript.Shell").specialfolders("Desktop")
@@ -55,7 +55,7 @@ Sub procuraCaixasDeTexto()
  '########################################################################
     MsgBox "okay"
 ' #####################################################
-' Handler de cabeçalho
+' Handler de cabeÃ§alho
 ' #####################################################
      
      For Each hdr In ActiveDocument.Sections(1).Headers
@@ -96,7 +96,7 @@ Sub procuraCaixasDeTexto()
     
 
 ' #####################################################
-' só parte Colorida
+' sÃ³ parte Colorida
 ' #####################################################
  
     ActiveDocument.SaveAs FileName:=nomeDaPasta & strNewFolderName & "\" & "Parte_Colorida", FileFormat:=wdFormatDocument
@@ -148,22 +148,6 @@ hell:
 End Function
 
 
-
-
-
-
-Sub StartUndoSaver()
-    On Error Resume Next
-    ActiveDocument.Bookmarks.Add "_InMacro_"
-    On Error GoTo 0
-End Sub
-
-
-Sub EndUndoSaver()
-    On Error Resume Next
-    ActiveDocument.Bookmarks("_InMacro_").Delete
-    On Error GoTo 0
-End Sub
 
 
 Sub EditUndo() ' Catches Ctrl-Z
