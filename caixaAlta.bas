@@ -1,9 +1,6 @@
-Attribute VB_Name = "Módulo10"
 Sub caixaAuta()
-
     For Each forma In ActiveDocument.Shapes
-        
-        If forma.Type = msoTextBox Then
+         If forma.Type = msoTextBox Then
             forma.Select
             Selection.Font.Size = 12
             Selection.Font.AllCaps = True
