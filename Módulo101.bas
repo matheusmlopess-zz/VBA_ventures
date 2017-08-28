@@ -37,8 +37,8 @@ Sub blackNwhite()
     
     
 ' Handler de imagens
-    Dim forma2 As Shape
-       For Each forma2 In ActiveDocument.Shapes
+
+    For Each forma2 In ActiveDocument.Shapes
        forma2.Select
            If forma2.Type = msoPicture Then
                forma2.Select
