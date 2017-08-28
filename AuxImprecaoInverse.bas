@@ -1,18 +1,8 @@
 Sub procuraCaixasDeTexto()
-    Dim forma As Shape
-    Dim forma1 As Shape
-    Dim aux As String
-    Dim achei As Integer
-    Dim objInLineShape As InlineShape
-    Dim eh_WordArt As Shape
-    Dim eh_WordArt_Inline As InlineShape
-    Dim sTexto As String
-    Dim hdr As HeaderFooter
-   
-' #####################################################
+    Dim forma As Shape, forma1 As Shape, aux As String, achei As Integer, objInLineShape As InlineShape
+    Dim eh_WordArt As Shape, eh_WordArt_Inline As InlineShape, sTexto As String, hdr As HeaderFooter
+
 ' Handler de imagens
-' #####################################################
- 
     Dim forma2 As Shape
     
     For Each forma2 In ActiveDocument.Shapes
@@ -28,12 +18,9 @@ Sub procuraCaixasDeTexto()
             End If
     Next
  
-' #####################################################
 ' Handler de wordArt
-' #####################################################
 
-   
-     On Error GoTo ErroHandler
+       On Error GoTo ErroHandler
        For Each eh_WordArt In ActiveDocument.Shapes
        On Error GoTo ErroHandler
             sTexto = "no Word Art"
@@ -66,9 +53,7 @@ Sub procuraCaixasDeTexto()
         
     Next
   
-' #####################################################
 ' só parte P&B
-' #####################################################
  
     pathOf = CreateObject("WScript.Shell").specialfolders("Desktop")
     
@@ -86,20 +71,14 @@ Sub procuraCaixasDeTexto()
     FileFormat:=wdFormatDocument
 
 
- '########################################################################
-    MsgBox "okay"
-' #####################################################
 ' Handler de cabeçalho
-' #####################################################
      
      For Each hdr In ActiveDocument.Sections(1).Headers
         hdr.Range.Text = vbNullString
      Next hdr
      
 
-' #####################################################
 ' Reverter wordArt
-' #####################################################
 
      On Error GoTo ErroHandler
        For Each eh_WordArt In ActiveDocument.Shapes
@@ -158,9 +137,7 @@ Sub procuraCaixasDeTexto()
     Next
     
 
-' #####################################################
 ' só parte Colorida
-' #####################################################
  
     ActiveDocument.SaveAs FileName:=nomeDaPasta & strNewFolderName & "\" & "Parte_Colorida", FileFormat:=wdFormatDocument
 
