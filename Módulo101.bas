@@ -1,7 +1,6 @@
 Sub blackNwhite()
-    Dim forma, forma2 As Shape
-    Dim hdr As HeaderFooter
-    
+    Dim forma, forma2 As Shape, hdr As HeaderFooter
+   
     For Each forma In ActiveDocument.Shapes
        forma.Select
            If forma.Type = msoPicture Then
