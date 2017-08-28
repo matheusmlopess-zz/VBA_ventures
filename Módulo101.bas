@@ -1,12 +1,12 @@
 Sub blackNwhite()
+    
     Dim forma, forma2 As Shape, hdr As HeaderFooter
-   
     For Each forma In ActiveDocument.Shapes
        forma.Select
            If forma.Type = msoPicture Then
-               forma.Select
+            forma.Select
                 If Selection.ShapeRange.Name <> "Imagem 3" Then
-                 forma.PictureFormat.Brightness = 1
+                    forma.PictureFormat.Brightness = 1
                 End If
                 If Selection.ShapeRange.Name = "Imagem 3" Then
                     forma.PictureFormat.Brightness = 0.5
