@@ -2,23 +2,20 @@ Sub blackNwhite()
     
     Dim forma
     Dim forma2 As Shape, hdr As HeaderFooter
-    
-    
-   ' On Error GoTo ErroHandler
+
+   'On Error GoTo ErroHandler
     For Each forma In ActiveDocument.Shapes
       forma.Select
-      
            If forma.Type = msoPicture Then
            '  forma.Select
               If Selection.ShapeRange.Name <> "Imagem 3" And Selection.ShapeRange.Name <> "Picture 3" Then
                   forma.PictureFormat.Brightness = 1
               End If
-              
            End If
     Next
     
      
-    ' só parte P&B
+    'Só parte P&B
      pathOf = CreateObject("WScript.Shell").specialfolders("Desktop")
      
         If Application.Documents.Count >= 1 Then
@@ -35,15 +32,12 @@ Sub blackNwhite()
     FileFormat:=wdFormatDocument
 
  ' Handler de cabeçalho
-    
     On Error GoTo ErroHandler
      For Each hdr In ActiveDocument.Sections(1).Headers
         hdr.Range.Text = vbNullString
      Next hdr
     
-    
 ' Handler de imagens
-
     On Error GoTo ErroHandler
     For Each forma2 In ActiveDocument.Shapes
        forma2.Select
