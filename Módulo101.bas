@@ -1,4 +1,4 @@
-Attribute VB_Name = "Módulo1"
+
 Sub procuraCaixasDeTexto()
     Dim forma As Shape
     Dim forma1 As Shape
@@ -10,9 +10,6 @@ Sub procuraCaixasDeTexto()
     Dim sTexto As String
     Dim hdr As HeaderFooter
     
-' Handler de imagens
-    
-   StartUndoSaver
    
     Dim forma2 As Shape
     For Each forma2 In ActiveDocument.Shapes
@@ -29,8 +26,6 @@ Sub procuraCaixasDeTexto()
             
     Next
     
-  EndUndoSaver
-        
 ' só parte P&B
      pathOf = CreateObject("WScript.Shell").specialfolders("Desktop")
     
@@ -59,11 +54,12 @@ Sub procuraCaixasDeTexto()
        forma3.Select
            If forma3.Type = msoPicture Then
                forma3.Select
-               forma3.PictureFormat.Brightness = 0.5
-               If Selection.ShapeRange.Name = "Imagem 3" Then
-                   forma3.Select
-                   forma3.PictureFormat.Brightness = 1
-               End If
+                If Selection.ShapeRange.Name <> "Imagem 3" Then
+                     forma3.PictureFormat.Brightness = 0.5
+                End If
+                If Selection.ShapeRange.Name = "Imagem 3" Then
+                     forma3.PictureFormat.Brightness = 1
+                End If         
             End If
     Next
 
@@ -74,7 +70,7 @@ Sub procuraCaixasDeTexto()
             formaText.Select
             Selection.ShapeRange.Fill.Transparency = 1
         If Selection.ShapeRange.TextFrame.HasText Then
-        On Error GoTo Handler1
+        On Error GoTo ErroHandler
             Selection.Font.Color = wdColorWhite
         End If
             
@@ -87,14 +83,6 @@ Sub procuraCaixasDeTexto()
 ErroHandler:
     Err.Clear
     Resume Next
-  
-Handler1:
-    Err.Clear
-    Resume Next
-   
-Handler2:
-    Err.Clear
-    Resume Next
    
 End Sub
 
@@ -105,20 +93,21 @@ Function CreateFolder(ByVal sPath As String) As Boolean
     Dim Folder As String, i As Integer, sShare As String
 
     If Right(sPath, 1) = "\" Then sPath = Left(sPath, Len(sPath) - 1)
+        
     Set fs = CreateObject("Scripting.FileSystemObject")
-    If sPath Like "\\*\*" Then
-        sPath = Replace(sPath, "\", "@", 1, 3)
-    End If
+        If sPath Like "\\*\*" Then
+            sPath = Replace(sPath, "\", "@", 1, 3)
+        End If
 
     FolderArray = Split(sPath, "\")
     FolderArray(0) = Replace(FolderArray(0), "@", "\", 1, 3)
-    On Error GoTo hell
-    For i = 0 To UBound(FolderArray) Step 1
-        Folder = Folder & FolderArray(i) & "\"
-        If Not fs.FolderExists(Folder) Then
-            fs.CreateFolder (Folder)
-        End If
-    Next
+     On Error GoTo hell
+        For i = 0 To UBound(FolderArray) Step 1
+            Folder = Folder & FolderArray(i) & "\"
+            If Not fs.FolderExists(Folder) Then
+                fs.CreateFolder (Folder)
+            End If
+        Next
     CreateFolder = True
 
     hell:
