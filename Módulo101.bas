@@ -1,4 +1,3 @@
-
 Sub blackNwhite()
     Dim forma As Shape
     Dim forma1 As Shape
