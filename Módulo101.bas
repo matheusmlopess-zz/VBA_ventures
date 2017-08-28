@@ -9,10 +9,9 @@ Sub procuraCaixasDeTexto()
     Dim eh_WordArt_Inline As InlineShape
     Dim sTexto As String
     Dim hdr As HeaderFooter
-
-' #####################################################
+    
 ' Handler de imagens
-' #####################################################
+    
    StartUndoSaver
    
     Dim forma2 As Shape
@@ -31,9 +30,8 @@ Sub procuraCaixasDeTexto()
     Next
     
   EndUndoSaver
-' #####################################################
+        
 ' só parte P&B
-' #####################################################
      pathOf = CreateObject("WScript.Shell").specialfolders("Desktop")
     
         If Application.Documents.Count >= 1 Then
@@ -48,19 +46,14 @@ Sub procuraCaixasDeTexto()
     ActiveDocument.SaveAs FileName:=nomeDaPasta _
     & strNewFolderName & "\" & "Parte_Preto&Branco", _
     FileFormat:=wdFormatDocument
- '########################################################################
-    MsgBox "okay"
-' #####################################################
-' Handler de cabeçalho
-' #####################################################
-     
+
+ ' Handler de cabeçalho
      For Each hdr In ActiveDocument.Sections(1).Headers
         hdr.Range.Text = vbNullString
      Next hdr
-' #####################################################
+    
+    
 ' Handler de imagens
-' #####################################################
-
     Dim forma3 As Shape
        For Each forma3 In ActiveDocument.Shapes
        forma3.Select
@@ -88,10 +81,7 @@ Sub procuraCaixasDeTexto()
          End If
     Next
 
-' #####################################################
 ' só parte Colorida
-' #####################################################
- 
     ActiveDocument.SaveAs FileName:=nomeDaPasta & strNewFolderName & "\" & "Parte_Colorida", FileFormat:=wdFormatDocument
 
 ErroHandler:
@@ -116,16 +106,13 @@ Function CreateFolder(ByVal sPath As String) As Boolean
 
     If Right(sPath, 1) = "\" Then sPath = Left(sPath, Len(sPath) - 1)
     Set fs = CreateObject("Scripting.FileSystemObject")
-    'UNC path ? change 3 "\" into 3 "@"
     If sPath Like "\\*\*" Then
         sPath = Replace(sPath, "\", "@", 1, 3)
     End If
-    'now split
+
     FolderArray = Split(sPath, "\")
-    'then set back the @ into \ in item 0 of array
     FolderArray(0) = Replace(FolderArray(0), "@", "\", 1, 3)
     On Error GoTo hell
-    'start from root to end, creating what needs to be
     For i = 0 To UBound(FolderArray) Step 1
         Folder = Folder & FolderArray(i) & "\"
         If Not fs.FolderExists(Folder) Then
@@ -133,5 +120,6 @@ Function CreateFolder(ByVal sPath As String) As Boolean
         End If
     Next
     CreateFolder = True
-hell:
-End Function
+
+    hell:
+    End Function
