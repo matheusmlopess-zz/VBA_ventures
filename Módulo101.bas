@@ -21,7 +21,7 @@ Sub blackNwhite()
         If Application.Documents.Count >= 1 Then
             nomeDoc = ActiveDocument.Name
         Else
-            MsgBox "No documents are open"
+            MsgBox " Try again mate! "
         End If
     
     nomeDaPasta = pathOf & "\" & nomeDoc & "_"
