@@ -1,28 +1,18 @@
 Sub blackNwhite()
-    Dim forma As Shape
-    Dim forma1 As Shape
-    Dim aux As String
-    Dim achei As Integer
-    Dim objInLineShape As InlineShape
-    Dim eh_WordArt As Shape
-    Dim eh_WordArt_Inline As InlineShape
-    Dim sTexto As String
+    Dim forma, forma2 As Shape
     Dim hdr As HeaderFooter
     
-   
-    Dim forma2 As Shape
-    For Each forma2 In ActiveDocument.Shapes
-       forma2.Select
-           If forma2.Type = msoPicture Then
-               forma2.Select
+    For Each forma In ActiveDocument.Shapes
+       forma.Select
+           If forma.Type = msoPicture Then
+               forma.Select
                 If Selection.ShapeRange.Name <> "Imagem 3" Then
-                 forma2.PictureFormat.Brightness = 1
+                 forma.PictureFormat.Brightness = 1
                 End If
                 If Selection.ShapeRange.Name = "Imagem 3" Then
-                    forma2.PictureFormat.Brightness = 0.5
+                    forma.PictureFormat.Brightness = 0.5
                 End If
             End If
-            
     Next
     
 ' só parte P&B
@@ -48,16 +38,16 @@ Sub blackNwhite()
     
     
 ' Handler de imagens
-    Dim forma3 As Shape
-       For Each forma3 In ActiveDocument.Shapes
-       forma3.Select
-           If forma3.Type = msoPicture Then
-               forma3.Select
+    Dim forma2 As Shape
+       For Each forma2 In ActiveDocument.Shapes
+       forma2.Select
+           If forma2.Type = msoPicture Then
+               forma2.Select
                 If Selection.ShapeRange.Name <> "Imagem 3" Then
-                     forma3.PictureFormat.Brightness = 0.5
+                     forma2.PictureFormat.Brightness = 0.5
                 End If
                 If Selection.ShapeRange.Name = "Imagem 3" Then
-                     forma3.PictureFormat.Brightness = 1
+                     forma2.PictureFormat.Brightness = 1
                 End If         
             End If
     Next
