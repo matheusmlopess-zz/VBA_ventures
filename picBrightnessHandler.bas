@@ -1,4 +1,3 @@
-Attribute VB_Name = "Módulo2"
  Sub imageBright()
 
  Dim forma As Shape
