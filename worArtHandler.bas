@@ -1,9 +1,6 @@
-Attribute VB_Name = "Módulo3"
 Sub find_wordart()
 
-Dim eh_WordArt As Shape
-Dim eh_WordArt_InlineShpNrm As InlineShape
-Dim sText As String
+    Dim eh_WordArt As Shape, eh_WordArt_InlineShpNrm As InlineShape, sText As String
     
     On Error GoTo ErroHandler
         For Each eh_WordArt In ActiveDocument.Shapes
