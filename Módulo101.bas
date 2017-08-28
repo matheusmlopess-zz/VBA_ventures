@@ -1,22 +1,26 @@
 Sub blackNwhite()
     
-    Dim forma, forma2 As Shape, hdr As HeaderFooter
+    Dim forma
+    Dim forma2 As Shape, hdr As HeaderFooter
+    
+    
+   ' On Error GoTo ErroHandler
     For Each forma In ActiveDocument.Shapes
-       forma.Select
+      forma.Select
+      
            If forma.Type = msoPicture Then
-            forma.Select
-                If Selection.ShapeRange.Name <> "Imagem 3" Then
-                    forma.PictureFormat.Brightness = 1
-                End If
-                If Selection.ShapeRange.Name = "Imagem 3" Then
-                    forma.PictureFormat.Brightness = 0.5
-                End If
-            End If
+           '  forma.Select
+              If Selection.ShapeRange.Name <> "Imagem 3" And Selection.ShapeRange.Name <> "Picture 3" Then
+                  forma.PictureFormat.Brightness = 1
+              End If
+              
+           End If
     Next
     
-' só parte P&B
+     
+    ' só parte P&B
      pathOf = CreateObject("WScript.Shell").specialfolders("Desktop")
-    
+     
         If Application.Documents.Count >= 1 Then
             nomeDoc = ActiveDocument.Name
         Else
@@ -31,6 +35,8 @@ Sub blackNwhite()
     FileFormat:=wdFormatDocument
 
  ' Handler de cabeçalho
+    
+    On Error GoTo ErroHandler
      For Each hdr In ActiveDocument.Sections(1).Headers
         hdr.Range.Text = vbNullString
      Next hdr
@@ -38,20 +44,25 @@ Sub blackNwhite()
     
 ' Handler de imagens
 
+    On Error GoTo ErroHandler
     For Each forma2 In ActiveDocument.Shapes
        forma2.Select
            If forma2.Type = msoPicture Then
-               forma2.Select
-                If Selection.ShapeRange.Name <> "Imagem 3" Then
-                     forma2.PictureFormat.Brightness = 0.5
-                End If
-                If Selection.ShapeRange.Name = "Imagem 3" Then
-                     forma2.PictureFormat.Brightness = 1
-                End If         
-            End If
+            
+              If Selection.ShapeRange.Name <> "Imagem 3" And Selection.ShapeRange.Name <> "Picture 3" Then
+                  forma2.PictureFormat.Brightness = 0.5
+              End If
+
+              If Selection.ShapeRange.Name = "Imagem 3" Or Selection.ShapeRange.Name = "Picture 3" Then
+                  forma2.PictureFormat.Brightness = 1
+              End If
+ 
+          End If
     Next
 
     ActiveDocument.Range.Font.Color = wdColorWhite
+    
+    On Error GoTo ErroHandler
     For Each formaText In ActiveDocument.Shapes
         
         If formaText.Type = msoTextBox Then
@@ -65,8 +76,8 @@ Sub blackNwhite()
          End If
     Next
 
-' só parte Colorida
-    ActiveDocument.SaveAs FileName:=nomeDaPasta & strNewFolderName & "\" & "Parte_Colorida", FileFormat:=wdFormatDocument
+ 'só parte Colorida
+   ActiveDocument.SaveAs FileName:=nomeDaPasta & strNewFolderName & "\" & "Parte_Colorida", FileFormat:=wdFormatDocument
 
 ErroHandler:
     Err.Clear
@@ -76,8 +87,7 @@ End Sub
 
 Function CreateFolder(ByVal sPath As String) As Boolean
 'by Patrick Honorez - www.idevlop.com
-    Dim fs As Object
-    Dim FolderArray
+    Dim fs As Object, FolderArray
     Dim Folder As String, i As Integer, sShare As String
 
     If Right(sPath, 1) = "\" Then sPath = Left(sPath, Len(sPath) - 1)
@@ -98,5 +108,6 @@ Function CreateFolder(ByVal sPath As String) As Boolean
         Next
     CreateFolder = True
 
-    hell:
+hell:
     End Function
+
